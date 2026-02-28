@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elbadéco – Lotus Aroma | مبخرة فاخرة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-pale: #f5e6b8;
+    --rose: #e8b4c0;
+    --dark: #0a0a0f;
+    --dark2: #12101a;
+    --dark3: #1c1828;
+    --dark4: #251e35;
+    --white: #f5f0ea;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--white);
+    font-family: 'Tajawal', sans-serif;
+    overflow-x: hidden;
+  }
+  .smoke-bg {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background: radial-gradient(ellipse at 20% 50%, rgba(201,168,76,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, rgba(232,180,192,0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 80%, rgba(201,168,76,0.03) 0%, transparent 50%);
+  }
+  .smoke-particle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    animation: smokeDrift linear infinite;
+    pointer-events: none;
+  }
+  @keyframes smokeDrift {
+    0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+    20%  { opacity: 1; }
+    80%  { opacity: 0.6; }
+    100% { transform: translateY(-120vh) translateX(30px) scale(2); opacity: 0; }
+  }
+  nav {
+    position: fixed; top:0; width:100%; z-index:100;
+    padding: 18px 40px;
+    display:flex; align-items:center; justify-content:space-between;
+    background: linear-gradient(to bottom, rgba(10,10,15,0.95), transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(201,168,76,0.1);
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; font-weight: 900; letter-spacing: 3px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light), var(--rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    text-decoration: none;
+  }
+  .logo span {
+    font-size: 11px; display:block; letter-spacing: 6px; font-weight: 300; margin-top: -4px;
+    background: linear-gradient(135deg, var(--gold-pale), var(--rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark); padding: 10px 24px; border-radius: 30px;
+    font-size: 14px; font-weight: 700; text-decoration: none;
+    transition: all 0.3s; box-shadow: 0 0 20px rgba(201,168,76,0.3);
+  }
+  .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(201,168,76,0.5); }
+  #hero {
+    position: relative; min-height: 100vh;
+    display:flex; align-items:center; justify-content:center;
+    overflow: hidden; padding-top: 80px;
+  }
+  .hero-bg {
+    position: absolute; inset:0;
+    background: radial-gradient(ellipse at center top, rgba(201,168,76,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at center bottom, rgba(232,180,192,0.05) 0%, transparent 60%), var(--dark);
+  }
+  .hero-inner {
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1fr 1fr;
+    align-items:center; gap:60px;
+    max-width: 1200px; width:100%; padding: 40px;
+  }
+  .hero-text { animation: fadeUp 1s ease both; }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(40px); }
+    to   { opacity:1; transform: translateY(0); }
+  }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(232,180,192,0.1));
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold-light); font-size: 12px; letter-spacing: 4px;
+    text-transform: uppercase; padding: 6px 18px; border-radius: 20px; margin-bottom: 24px;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 6vw, 72px); font-weight: 900; line-height: 1.15; margin-bottom: 20px;
+    background: linear-gradient(135deg, #fff 0%, var(--gold-pale) 50%, var(--gold-light) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .hero-sub {
+    font-size: 18px; color: rgba(245,240,234,0.65); line-height: 1.8; margin-bottom: 40px; font-weight: 300;
+  }
+  .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark); padding: 16px 40px; border-radius: 50px;
+    font-size: 18px; font-weight: 800; text-decoration: none; border: none; cursor: pointer;
+    transition: all 0.3s; box-shadow: 0 8px 30px rgba(201,168,76,0.4);
+    display: inline-block; position: relative; overflow:hidden;
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 14px 40px rgba(201,168,76,0.6); }
+  .hero-image-wrap {
+    position:relative; animation: fadeUp 1s 0.3s ease both;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-image-glow {
+    position:absolute; width:80%; height:80%; border-radius:50%;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.2) 0%, rgba(232,180,192,0.1) 40%, transparent 70%);
+    animation: pulseGlow 4s ease-in-out infinite; filter: blur(30px);
+  }
+  @keyframes pulseGlow {
+    0%,100% { transform: scale(1); opacity:0.8; }
+    50% { transform: scale(1.2); opacity:1; }
+  }
+  .hero-img {
+    position:relative; z-index:1; width: 100%; max-width: 480px;
+    border-radius: 20px; object-fit: cover; aspect-ratio: 3/4;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 60px rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  #countdown {
+    padding: 50px 40px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08), rgba(232,180,192,0.05));
+    border-top: 1px solid rgba(201,168,76,0.15); border-bottom: 1px solid rgba(201,168,76,0.15);
+    text-align: center; position:relative; z-index:1;
+  }
+  .countdown-title {
+    font-size: 15px; letter-spacing: 5px; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 20px; font-weight: 500;
+  }
+  .countdown-title span { color: var(--rose); }
+  .countdown-timer { display:flex; align-items:center; justify-content:center; gap: 20px; }
+  .countdown-block {
+    display:flex; flex-direction:column; align-items:center;
+    background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px; padding: 16px 28px; min-width: 90px;
+  }
+  .countdown-num {
+    font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height:1;
+  }
+  .countdown-label { font-size:11px; color: rgba(245,240,234,0.5); letter-spacing:2px; margin-top:4px; }
+  .countdown-sep { font-size:40px; color: var(--gold); margin-bottom:24px; opacity:0.6; }
+  section { position:relative; z-index:1; }
+  .section-tag {
+    display:inline-block; font-size: 11px; letter-spacing:5px; text-transform:uppercase;
+    color: var(--gold); border-bottom: 1px solid rgba(201,168,76,0.4); padding-bottom: 6px; margin-bottom: 14px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif; font-size: clamp(30px,4vw,50px); font-weight: 700; line-height:1.3;
+    background: linear-gradient(135deg, #fff 0%, var(--gold-pale) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px;
+  }
+  .section-sub { color: rgba(245,240,234,0.55); font-size:16px; line-height:1.9; font-weight:300; }
+  #features { padding: 100px 40px; max-width:1200px; margin:0 auto; text-align:center; }
+  .features-header { margin-bottom: 60px; }
+  .features-grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card {
+    background: linear-gradient(145deg, rgba(201,168,76,0.05), rgba(232,180,192,0.03));
+    border: 1px solid rgba(201,168,76,0.12); border-radius: 20px; padding: 36px 28px;
+    transition: all 0.4s; position:relative; overflow:hidden;
+  }
+  .feature-card:hover { transform: translateY(-8px); border-color: rgba(201,168,76,0.35); }
+  .feature-icon { font-size: 40px; margin-bottom: 18px; display:block; }
+  .feature-name { font-size: 17px; font-weight: 700; color: var(--gold-light); margin-bottom: 10px; }
+  .feature-desc { font-size:14px; color: rgba(245,240,234,0.55); line-height:1.8; }
+  #pricing {
+    padding: 100px 40px;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.04), transparent);
+  }
+  .pricing-inner { max-width:900px; margin:0 auto; text-align:center; }
+  .pricing-header { margin-bottom: 60px; }
+  .pricing-cards { display:grid; grid-template-columns:1fr 1fr; gap: 28px; }
+  .pricing-card {
+    border-radius: 24px; padding: 44px 36px;
+    position:relative; overflow:hidden;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(28,24,40,0.8); transition: all 0.4s; text-align:center;
+  }
+  .pricing-card:hover { transform: translateY(-6px); }
+  .pricing-card.best {
+    border-color: var(--gold);
+    background: linear-gradient(145deg, rgba(201,168,76,0.12), rgba(232,180,192,0.06), rgba(28,24,40,0.9));
+    box-shadow: 0 0 60px rgba(201,168,76,0.15), inset 0 0 60px rgba(201,168,76,0.04);
+  }
+  .best-badge {
+    position:absolute; top:18px; left:50%; transform:translateX(-50%);
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark); font-size: 11px; font-weight: 800;
+    letter-spacing: 3px; text-transform: uppercase;
+    padding: 5px 18px; border-radius: 20px; white-space:nowrap;
+  }
+  .pricing-qty { font-size: 18px; color: rgba(245,240,234,0.6); margin: 30px 0 10px; font-weight: 300; }
+  .pricing-price {
+    font-family: 'Playfair Display', serif; font-size: 64px; font-weight: 900;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1;
+  }
+  .pricing-currency { font-size:24px; vertical-align:super; }
+  .pricing-unit { font-size: 16px; color: rgba(245,240,234,0.4); margin-top:4px; }
+  .pricing-features { margin: 28px 0; text-align:right; }
+  .pricing-feat {
+    display:flex; align-items:center; gap:10px; font-size:14px; color: rgba(245,240,234,0.7);
+    padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .pricing-feat:last-child { border-bottom:none; }
+  .pricing-feat-icon { color: var(--gold); font-size:16px; flex-shrink:0; }
+  .pricing-saving {
+    display:inline-block; background: rgba(232,180,192,0.15); border: 1px solid rgba(232,180,192,0.3);
+    color: var(--rose); font-size:12px; padding: 4px 14px; border-radius:20px; margin-bottom:16px; font-weight:600;
+  }
+  #gallery { padding: 100px 40px; max-width:1200px; margin:0 auto; }
+  .gallery-header { text-align:center; margin-bottom:60px; }
+  .gallery-grid { display:grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 16px; }
+  .gallery-item {
+    border-radius: 16px; overflow:hidden; position:relative;
+    border: 1px solid rgba(201,168,76,0.1); cursor: pointer; transition: all 0.4s;
+  }
+  .gallery-item:hover { transform: scale(1.02); border-color: rgba(201,168,76,0.35); }
+  .gallery-item:nth-child(1) { grid-row: span 2; }
+  .gallery-item img {
+    width:100%; height:100%; object-fit:cover; display:block;
+    min-height: 200px; transition: transform 0.5s;
+  }
+  .gallery-item:nth-child(1) img { min-height: 420px; }
+  .gallery-item:hover img { transform: scale(1.05); }
+  .gallery-overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(to top, rgba(10,10,15,0.7), transparent);
+    opacity:0; transition: opacity 0.4s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity:1; }
+  #testimonials {
+    padding: 100px 40px;
+    background: linear-gradient(to bottom, transparent, rgba(232,180,192,0.03), transparent);
+  }
+  .testimonials-inner { max-width:1100px; margin:0 auto; }
+  .testimonials-header { text-align:center; margin-bottom:60px; }
+  .testimonials-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:24px; }
+  .testimonial-card {
+    background: rgba(28,24,40,0.6); border: 1px solid rgba(232,180,192,0.12);
+    border-radius: 20px; padding: 32px 28px; transition: all 0.4s;
+  }
+  .testimonial-card:hover { border-color: rgba(232,180,192,0.3); transform: translateY(-5px); }
+  .testimonial-quote {
+    font-family: 'Playfair Display', serif; font-size: 60px; line-height:0.5;
+    color: var(--gold); opacity:0.4; margin-bottom: 20px; display:block;
+  }
+  .testimonial-text { font-size: 15px; line-height:1.9; color: rgba(245,240,234,0.75); margin-bottom: 24px; font-style:italic; }
+  .testimonial-stars { color: var(--gold); font-size:16px; letter-spacing:3px; margin-bottom:14px; }
+  .testimonial-author { display:flex; align-items:center; gap:12px; }
+  .author-avatar {
+    width:40px; height:40px; border-radius:50%;
+    background: linear-gradient(135deg, var(--gold), var(--rose));
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; font-weight:700; color:var(--dark); flex-shrink:0;
+  }
+  .author-name { font-size:14px; font-weight:700; color: var(--gold-light); }
+  .author-city { font-size:12px; color: rgba(245,240,234,0.4); }
+  #order { padding: 100px 40px; background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.04), transparent); }
+  .order-inner { max-width:680px; margin:0 auto; text-align:center; }
+  .order-header { margin-bottom:48px; }
+  .order-form {
+    background: rgba(28,24,40,0.8); border: 1px solid rgba(201,168,76,0.2);
+    border-radius:24px; padding: 48px 44px; text-align:right;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  }
+  .form-group { margin-bottom:24px; }
+  .form-label { display:block; font-size:13px; color: var(--gold-light); letter-spacing:2px; margin-bottom:10px; font-weight:600; text-transform:uppercase; }
+  .form-input, .form-select {
+    width:100%; padding: 16px 20px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(201,168,76,0.2);
+    border-radius:12px; color: var(--white); font-size:15px; font-family: 'Tajawal', sans-serif;
+    transition: border-color 0.3s; outline:none;
+  }
+  .form-input:focus, .form-select:focus { border-color: var(--gold); background: rgba(201,168,76,0.05); }
+  .form-input::placeholder { color: rgba(245,240,234,0.25); }
+  .form-select option { background: var(--dark3); }
+  .btn-order {
+    width:100%; padding:20px; font-size:20px; font-weight:800; border:none; cursor:pointer;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark); border-radius:50px; margin-top:10px; transition: all 0.3s;
+    box-shadow: 0 8px 30px rgba(201,168,76,0.4); font-family:'Tajawal',sans-serif; letter-spacing:1px;
+  }
+  .btn-order:hover { transform:translateY(-3px); box-shadow:0 14px 50px rgba(201,168,76,0.6); }
+  .form-note { text-align:center; margin-top:18px; font-size:13px; color: rgba(245,240,234,0.4); }
+  .form-note span { color: var(--gold); }
+  #trust { padding: 50px 40px; border-top: 1px solid rgba(201,168,76,0.1); border-bottom: 1px solid rgba(201,168,76,0.1); position:relative; z-index:1; }
+  .trust-inner { max-width:1000px; margin:0 auto; display:flex; justify-content:center; gap:50px; flex-wrap:wrap; }
+  .trust-item { display:flex; align-items:center; gap:12px; font-size:14px; color: rgba(245,240,234,0.65); }
+  .trust-icon { font-size:24px; color:var(--gold); }
+  footer { padding: 50px 40px; text-align:center; background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.5)); position:relative; z-index:1; }
+  .footer-logo {
+    font-family:'Playfair Display',serif; font-size:28px; font-weight:900;
+    background: linear-gradient(135deg,var(--gold),var(--gold-light),var(--rose));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    margin-bottom:12px; display:block;
+  }
+  .footer-tagline { font-size:13px; color: rgba(245,240,234,0.35); letter-spacing:3px; margin-bottom:30px; }
+  .footer-copy { font-size:12px; color:rgba(245,240,234,0.25); }
+  .whatsapp-float {
+    position:fixed; bottom:30px; left:30px; z-index:999;
+    width:58px; height:58px;
+    background: linear-gradient(135deg,#25D366,#128C7E);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-size:28px; text-decoration:none; box-shadow: 0 8px 25px rgba(37,211,102,0.4);
+    transition: all 0.3s; animation: waBounce 2s ease-in-out infinite;
+  }
+  @keyframes waBounce {
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-6px) scale(1.05);}
+  }
+  .whatsapp-float:hover { transform:scale(1.15)!important; animation:none; box-shadow:0 12px 35px rgba(37,211,102,0.6); }
+  .whatsapp-tooltip {
+    position:absolute; right:70px; top:50%; transform:translateY(-50%);
+    background:rgba(10,10,15,0.95); border:1px solid rgba(37,211,102,0.3);
+    color:#fff; font-size:13px; font-weight:600; padding:8px 16px; border-radius:8px;
+    white-space:nowrap; opacity:0; pointer-events:none; transition:opacity 0.3s;
+  }
+  .whatsapp-float:hover .whatsapp-tooltip { opacity:1; }
+  .reveal { opacity:0; transform:translateY(30px); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+  .reveal.visible { opacity:1; transform:translateY(0); }
+  @media(max-width:900px){
+    .hero-inner { grid-template-columns:1fr; text-align:center; gap:40px; }
+    .hero-btns { justify-content:center; }
+    .features-grid { grid-template-columns:1fr 1fr; }
+    .pricing-cards { grid-template-columns:1fr; max-width:420px; margin:0 auto; }
+    .gallery-grid { grid-template-columns:1fr 1fr; }
+    .gallery-item:nth-child(1) { grid-column:span 2; grid-row:auto; }
+    .gallery-item:nth-child(1) img { min-height:260px; }
+    .testimonials-grid { grid-template-columns:1fr; max-width:480px; margin:0 auto; }
+    nav { padding:16px 20px; }
+    .countdown-timer { gap:10px; }
+    .countdown-block { padding:12px 16px; min-width:70px; }
+    .countdown-num { font-size:36px; }
+  }
+  @media(max-width:600px){
+    #hero,#features,#pricing,#gallery,#testimonials,#order { padding-left:20px; padding-right:20px; }
+    .features-grid { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr; }
+    .gallery-item:nth-child(1) { grid-column:auto; }
+    .order-form { padding:32px 20px; }
+    .trust-inner { gap:24px; }
+    #countdown { padding:36px 20px; }
+    .countdown-sep { font-size:28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="smoke-bg"></div>
+<div class="smoke-particle" style="left:15%;bottom:-10%;width:120px;height:120px;background:rgba(201,168,76,0.06);animation-duration:18s;animation-delay:0s;"></div>
+<div class="smoke-particle" style="left:40%;bottom:-10%;width:80px;height:80px;background:rgba(232,180,192,0.05);animation-duration:22s;animation-delay:4s;"></div>
+<div class="smoke-particle" style="left:70%;bottom:-10%;width:100px;height:100px;background:rgba(201,168,76,0.04);animation-duration:16s;animation-delay:8s;"></div>
+<div class="smoke-particle" style="left:85%;bottom:-10%;width:60px;height:60px;background:rgba(232,180,192,0.06);animation-duration:20s;animation-delay:2s;"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <a class="logo" href="#">
+    Elbadéco
+    <span>LUXURY DÉCOR</span>
+  </a>
+  <a href="#order" class="nav-cta">اطلب الآن →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge">✦ Lotus Aroma – مبخرة ديكور فاخرة ✦</div>
+      <h1 class="hero-title">أناقة<br>تعطر<br>بيتك</h1>
+      <p class="hero-sub">لمسة فخامة لكل زاوية في منزلك<br>مصنوعة يدوياً من الجبس بتصميم عصري راقٍ</p>
+      <div class="hero-btns">
+        <a href="#order" class="btn-primary">🛍 اطلب الآن</a>
+      </div>
+      <div style="margin-top:32px;display:flex;gap:28px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(245,240,234,0.6);">
+          <span style="color:var(--gold);">✓</span> توصيل مجاني
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(245,240,234,0.6);">
+          <span style="color:var(--gold);">✓</span> الدفع عند الاستلام
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(245,240,234,0.6);">
+          <span style="color:var(--gold);">✓</span> توصيل خلال 36 ساعة
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrap">
+      <div class="hero-image-glow"></div>
+      <img class="hero-img" src="https://b.top4top.io/p_3707j7bue0.png" alt="Lotus Aroma مبخرة فاخرة">
+    </div>
+  </div>
+</section>
+
+<!-- COUNTDOWN -->
+<div id="countdown">
+  <p class="countdown-title">🔥 عرض خاص لفترة محدودة <span>– لا تفوتك الفرصة!</span></p>
+  <div class="countdown-timer">
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-hours">23</span>
+      <span class="countdown-label">ساعة</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-mins">59</span>
+      <span class="countdown-label">دقيقة</span>
+    </div>
+    <span class="countdown-sep">:</span>
+    <div class="countdown-block">
+      <span class="countdown-num" id="cd-secs">59</span>
+      <span class="countdown-label">ثانية</span>
+    </div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="features-header reveal">
+    <div class="section-tag">✦ مميزات المنتج ✦</div>
+    <h2 class="section-title">لماذا Lotus Aroma؟</h2>
+    <p class="section-sub">كل تفصيلة صُممت بعناية لتمنحك تجربة ديكور استثنائية</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal"><span class="feature-icon">🤲</span><div class="feature-name">صناعة يدوية مغربية</div><p class="feature-desc">مصنوعة بأيدي حرفيين مغاربة من جبس عالي الجودة بعناية واتقان</p></div>
+    <div class="feature-card reveal"><span class="feature-icon">💎</span><div class="feature-name">تصميم فاخر وأنيق</div><p class="feature-desc">شكل عصري راقٍ يناسب جميع أنواع الديكور ويُضفي جمالاً استثنائياً</p></div>
+    <div class="feature-card reveal"><span class="feature-icon">🌸</span><div class="feature-name">رائحة تدوم طويلاً</div><p class="feature-desc">تنشر عطراً رائعاً يملأ أجواء منزلك بأريج دافئ يدوم ساعات</p></div>
+    <div class="feature-card reveal"><span class="feature-icon">🎁</span><div class="feature-name">هدية مثالية</div><p class="feature-desc">الخيار الأمثل للهدايا في المناسبات والأعراس والأعياد</p></div>
+    <div class="feature-card reveal"><span class="feature-icon">🚚</span><div class="feature-name">توصيل مجاني</div><p class="feature-desc">نوصل لجميع مدن المغرب مجاناً – يصلك طلبك في أقل من يوم ونصف</p></div>
+    <div class="feature-card reveal"><span class="feature-icon">💳</span><div class="feature-name">الدفع عند الاستلام</div><p class="feature-desc">لا دفع مسبق – تدفع فقط حين تستلم منتجك بأمان وسهولة</p></div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-header reveal">
+      <div class="section-tag">✦ العروض الخاصة ✦</div>
+      <h2 class="section-title">اختر عرضك الآن</h2>
+      <p class="section-sub">أسعار حصرية لفترة محدودة – اطلب قبل نفاد الكمية!</p>
+    </div>
+    <div class="pricing-cards">
+      <div class="pricing-card reveal">
+        <div class="pricing-qty">قطعة واحدة</div>
+        <div class="pricing-price"><span class="pricing-currency">DH</span>60</div>
+        <div class="pricing-unit">للقطعة الواحدة</div>
+        <div class="pricing-features">
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>مبخرة Lotus Aroma واحدة</div>
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>توصيل مجاني لجميع المدن</div>
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>الدفع عند الاستلام</div>
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>توصيل خلال يوم ونصف</div>
+        </div>
+        <a href="#order" class="btn-primary" style="display:block;text-align:center;font-size:16px;padding:14px 24px;">اطلب الآن</a>
+      </div>
+      <div class="pricing-card best reveal">
+        <div class="best-badge">⭐ الأفضل قيمة</div>
+        <div class="pricing-saving">وفّر 20 درهم!</div>
+        <div class="pricing-qty">قطعتان معاً</div>
+        <div class="pricing-price"><span class="pricing-currency">DH</span>100</div>
+        <div class="pricing-unit">بدلاً من 120 درهم</div>
+        <div class="pricing-features">
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>مبخرتان Lotus Aroma</div>
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>توصيل مجاني لجميع المدن</div>
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>الدفع عند الاستلام</div>
+          <div class="pricing-feat"><span class="pricing-feat-icon">✓</span>مثالي كهدية مزدوجة</div>
+        </div>
+        <a href="#order" class="btn-primary" style="display:block;text-align:center;font-size:16px;padding:14px 24px;">اطلب الآن</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div class="section-tag">✦ معرض الصور ✦</div>
+    <h2 class="section-title">اكتشف الجمال عن قرب</h2>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item">
+      <img src="https://f.top4top.io/p_3707ibvrc4.png" alt="Lotus Aroma">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://c.top4top.io/p_3707x5qj01.png" alt="Lotus Aroma">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://e.top4top.io/p_3707dx89w3.png" alt="Lotus Aroma">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://i.top4top.io/p_37073e7dv7.png" alt="Lotus Aroma">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://h.top4top.io/p_3707viwy76.png" alt="Lotus Aroma">
+      <div class="gallery-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-header reveal">
+      <div class="section-tag">✦ آراء العملاء ✦</div>
+      <h2 class="section-title">ماذا قالوا عنا؟</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">جودة رائعة وسعر مناسب جداً! المبخرة وصلتني بحالة ممتازة والتغليف كان فخماً. بالتأكيد سأطلب مرة أخرى.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">س</div>
+          <div><div class="author-name">سارة المنصوري</div><div class="author-city">الدار البيضاء</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">وصلني الطلب بسرعة والتوصيل مجاني – ما كنت نتوقع يوصل بهاد السرعة! شكراً Elbadéco.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">ن</div>
+          <div><div class="author-name">نوال بنعلي</div><div class="author-city">مراكش</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <span class="testimonial-quote">"</span>
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">شكلها أنيق جداً في الصالون، كل من يزورنا يسأل عنها. هديتها لأختي في العرس وأعجبتها كثيراً!</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">ف</div>
+          <div><div class="author-name">فاطمة الزهراء</div><div class="author-city">الرباط</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div id="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">🔒</span>دفع آمن عند الاستلام</div>
+    <div class="trust-item"><span class="trust-icon">🚚</span>توصيل مجاني للمغرب</div>
+    <div class="trust-item"><span class="trust-icon">⚡</span>توصيل خلال 36 ساعة</div>
+    <div class="trust-item"><span class="trust-icon">🤝</span>ضمان رضا العميل</div>
+  </div>
+</div>
+
+<!-- ORDER FORM -->
+<section id="order">
+  <div class="order-inner">
+    <div class="order-header reveal">
+      <div class="section-tag">✦ اطلب الآن ✦</div>
+      <h2 class="section-title">أكمل طلبك الآن</h2>
+      <p class="section-sub">تعبئة بسيطة وسريعة – نتواصل معك لتأكيد الطلب</p>
+    </div>
+    <form class="order-form reveal" id="orderForm" onsubmit="handleOrder(event)">
+      <input type="hidden" name="_subject" value="طلب جديد - Elbadeco Lotus Aroma">
+      <div class="form-group">
+        <label class="form-label">👤 الاسم الكامل</label>
+        <input type="text" name="name" id="f-name" class="form-input" placeholder="أدخل اسمك الكامل" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">📱 رقم الهاتف</label>
+        <input type="tel" name="phone" id="f-phone" class="form-input" placeholder="06XXXXXXXX" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">🏙 المدينة</label>
+        <input type="text" name="city" id="f-city" class="form-input" placeholder="مثال: الدار البيضاء" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">📍 العنوان الكامل</label>
+        <input type="text" name="address" id="f-address" class="form-input" placeholder="الحي، الشارع، رقم البناية..." required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">🛍 اختر العرض</label>
+        <select name="offer" id="f-offer" class="form-select" required>
+          <option value="">اختر عرضك...</option>
+          <option value="واحدة - 60 درهم">✨ واحدة – 60 درهم</option>
+          <option value="اثنتان - 100 درهم">⭐ اثنتان – 100 درهم (الأفضل)</option>
+        </select>
+      </div>
+      <button type="submit" class="btn-order" id="submitBtn">🛍 تأكيد الطلب الآن</button>
+      <div id="successMsg" style="display:none;margin-top:20px;padding:18px;border-radius:12px;background:rgba(46,204,113,0.12);border:1px solid rgba(46,204,113,0.3);text-align:center;">
+        <div style="font-size:32px;margin-bottom:8px;">✅</div>
+        <div style="font-size:16px;font-weight:700;color:#2ecc71;margin-bottom:4px;">تم إرسال طلبك بنجاح!</div>
+        <div style="font-size:13px;color:rgba(245,240,234,0.6);">سيتم التواصل معك قريباً لتأكيد الطلب</div>
+      </div>
+      <p class="form-note" style="margin-top:14px;">
+        <span>✓</span> الدفع عند الاستلام &nbsp;|&nbsp;
+        <span>✓</span> توصيل مجاني &nbsp;|&nbsp;
+        <span>✓</span> خلال يوم ونصف
+      </p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Elbadéco</span>
+  <p class="footer-tagline">LUXURY HANDMADE DÉCOR – MOROCCO</p>
+  <p class="footer-copy">© 2025 Elbadéco – جميع الحقوق محفوظة | داخل المغرب فقط</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/212688838829?text=السلام%20عليكم%20أريد%20الطلب%20من%20Elbadéco" class="whatsapp-float" target="_blank">
+  <svg width="28" height="28" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3C8.8 3 3 8.8 3 16c0 2.4.7 4.7 1.8 6.6L3 29l6.6-1.7c1.9 1 4 1.6 6.4 1.6 7.2 0 13-5.8 13-13S23.2 3 16 3zm6.5 17.5c-.3.8-1.5 1.5-2.1 1.6-.5.1-1.2.1-3.8-1.1-3.2-1.4-5.2-4.7-5.4-4.9-.2-.2-1.4-1.9-1.4-3.6 0-1.7.9-2.5 1.2-2.9.3-.4.7-.5.9-.5h.6c.2 0 .5-.1.7.6.3.7 1 2.4 1.1 2.5.1.2.2.4.1.6-.1.2-.2.3-.3.5-.2.2-.3.4-.5.6-.1.2-.3.4-.1.7.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.6 1.7.3.1.6.1.8-.1.2-.2.8-.9 1-1.2.2-.3.4-.2.7-.1.3.1 1.8.9 2.1 1.1.3.2.5.3.6.4.1.4-.1 1.5-.3 1.7z"/>
+  </svg>
+  <div class="whatsapp-tooltip">تواصل معنا على واتساب</div>
+</a>
+
+<script>
+// Countdown Timer
+(function(){
+  const KEY = 'elbadeco_cd_end';
+  let end = localStorage.getItem(KEY);
+  if(!end || Date.now() > parseInt(end)){
+    end = Date.now() + 24*60*60*1000;
+    localStorage.setItem(KEY, end);
+  }
+  function tick(){
+    const diff = Math.max(0, parseInt(end) - Date.now());
+    const h = Math.floor(diff/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    const s = Math.floor((diff%60000)/1000);
+    document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+    document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+// Scroll Reveal
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); });
+},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Order Form → WhatsApp
+async function handleOrder(e){
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.textContent = '⏳ جاري الإرسال...';
+  btn.disabled = true;
+
+  const name    = document.getElementById('f-name').value.trim();
+  const phone   = document.getElementById('f-phone').value.trim();
+  const city    = document.getElementById('f-city').value.trim();
+  const address = document.getElementById('f-address').value.trim();
+  const offer   = document.getElementById('f-offer').value;
+
+  // 1) Send email via Formspree
+  try {
+    await fetch('https://formspree.io/f/xaqdkvvv', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({
+        _subject: 'طلب جديد - Elbadeco Lotus Aroma',
+        name, phone, city, address, offer
+      })
+    });
+  } catch(err) { /* continue even if email fails */ }
+
+  // 2) Open WhatsApp with pre-filled message
+  const msg = 'طلب جديد - Elbadeco Lotus Aroma\n\n'
+    + 'الاسم: ' + name + '\n'
+    + 'الهاتف: ' + phone + '\n'
+    + 'المدينة: ' + city + '\n'
+    + 'العنوان: ' + address + '\n'
+    + 'العرض: ' + offer + '\n\n'
+    + 'الدفع عند الاستلام - توصيل مجاني';
+
+  window.open('https://wa.me/212688838829?text=' + encodeURIComponent(msg), '_blank');
+
+  // 3) Show success
+  btn.style.display = 'none';
+  document.getElementById('successMsg').style.display = 'block';
+  document.getElementById('orderForm').reset();
+}
+</script>
+</body>
+</html>
